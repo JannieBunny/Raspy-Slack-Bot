@@ -1,0 +1,27 @@
+{
+  "name": "slack_bot",
+  "version": "0.0.1",
+  "description": "Raspy Slack Bot",
+  "main": "raspy.js",
+  "dependencies": {
+    "slackbotapi": "^1.3.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node raspy.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JannieBunny/raspy_slack_bot.git"
+  },
+  "keywords": [
+    "Slack",
+    "Bot"
+  ],
+  "author": "Christiaan Rossouw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JannieBunny/raspy_slack_bot/issues"
+  },
+  "homepage": "https://github.com/JannieBunny/raspy_slack_bot#readme"
+}
