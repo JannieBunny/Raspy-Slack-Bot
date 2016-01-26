@@ -4,6 +4,7 @@
   "description": "Raspy Slack Bot",
   "main": "raspy.js",
   "dependencies": {
+    "lodash": "^4.0.1",
     "slackbotapi": "^1.3.7"
   },
   "devDependencies": {},

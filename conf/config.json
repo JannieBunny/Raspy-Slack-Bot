@@ -1,0 +1,17 @@
+[
+	{
+		"name": "Torrent Feed", 
+		"channel": "rss_feed_torrents", 
+		"regex_url": "<(.*?)\\|",
+		"regex_name": "\\|(.*?)>",
+		"type": "links",
+		"download_dir": "/torrents",
+		"keywords": 
+		[
+			{
+				"name" : "Game of Thrones", 
+				"isTVContent" : true 
+			}
+		]
+	}
+]
