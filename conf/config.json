@@ -5,13 +5,31 @@
 		"regex_url": "<(.*?)\\|",
 		"regex_name": "\\|(.*?)>",
 		"type": "links",
-		"download_dir": "/torrents",
+		"download_dir": "torrents",
 		"keywords": 
 		[
-			{
-				"name" : "Game of Thrones", 
-				"isTVContent" : true 
-			}
+
 		]
-	}
+	},
+	{
+		"name": "Manual Pasted Links", 
+		"channel": "rss_feed_manual", 
+		"regex_url": "<((.*?)\\.torrent(.*))>",
+		"regex_name": "\\.php\\/(.*)\\/(.*)\\.torrent",
+		"regex_name_group": 2,
+        "group_matches_url": [
+			".torrent"
+        ],
+		"type": "links",
+		"download_dir": "torrents",
+		"keywords": 
+		[
+            "ignore_global"
+		]
+	},
+    {
+        "global_keywords" : [
+
+        ]
+    }
 ]
