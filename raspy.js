@@ -40,12 +40,12 @@ slack.on('message', function (data) {
     });
 	_.forEach(links, function(item){
 		if(slack.getChannel(data.channel).name === item.channel){
-			processLinks(data.text, item.keywords, item.regex_url, item.regex_name, item.download_dir, item.group_matches_url, globals, item.regex_name_group);
+			processLinks(data.text, item.keywords, item.regex_url, item.regex_name, item.download_dir, item.group_matches_url, globals, item.regex_name_group, item.custom_file_extension);
 		}
 	});
 });
 
-function processLinks(text, keywords, regexURL, regexName, downloadDir, group_matches_url, globals, regex_name_group) {
+function processLinks(text, keywords, regexURL, regexName, downloadDir, group_matches_url, globals, regex_name_group, custom_file_extension) {
 	var linksToProcess = text.split('\n');
 	_.forEach(linksToProcess, function(link){
 		console.log('Message Link: ' + link);
@@ -60,12 +60,12 @@ function processLinks(text, keywords, regexURL, regexName, downloadDir, group_ma
                     }
                 }
                 if(count === group_matches_url.length)
-                    processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group);
+                    processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group, custom_file_extension);
                 else
                     console.log('File does not match the regex expression in config, ignoring the link');
             }
             else{  
-                processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group);
+                processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group, custom_file_extension);
             }	   
         }
         else
@@ -90,14 +90,14 @@ function downloadFile(text, regexURL, file) {
 	}	
 }
 
-function processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group){
+function processFile(file_name, keywords, downloadDir, text, regexURL, globals, regex_name_group, custom_file_extension){
     if(file_name && file_name.length > 0){
         var filename = file_name[regex_name_group || 1];
         console.log('File Name: ' + filename);
         var completeKeywords = keywords.concat(globals[0].global_keywords || []);
         _.forEach(completeKeywords, function(keyword){
             if(completeKeywords.indexOf('ignore_global') >= 0){
-                var file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename);
+                var file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename + custom_file_extension || '');
                 downloadFile(text, regexURL, file);
             }
             else{
@@ -119,14 +119,14 @@ function processFile(file_name, keywords, downloadDir, text, regexURL, globals, 
                                     console.log('Duplcate Detected, ignoring');
                                 }
                                 else{
-                                    file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename + ' Detected SE-' + seriesPosition);
+                                    file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename + ' Detected SE-' + seriesPosition + custom_file_extension || '');
                                     downloadFile(text, regexURL, file);
                                 }
                             });
                         }
                     }
                     else{
-                        var file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename);
+                        var file = fs.createWriteStream(__dirname + '\\' + downloadDir + '\\' + filename + custom_file_extension || '');
                         downloadFile(text, regexURL, file);
                     }
                 }

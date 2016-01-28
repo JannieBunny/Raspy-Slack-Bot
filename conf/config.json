@@ -21,6 +21,7 @@
 			".torrent"
         ],
 		"type": "links",
+        "custom_file_extension": ".torrent",
 		"download_dir": "torrents",
 		"keywords": 
 		[
